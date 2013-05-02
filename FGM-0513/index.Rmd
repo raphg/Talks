@@ -1,0 +1,197 @@
+---
+title       : HVTN204 Peptide Microarray Analysis
+subtitle    : HVTN FGM, May 2013
+author      : Raphael Gottardo
+job         : Associate Member, Fred Hutchinson Cancer Research Center
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+logo: Logo.png
+license: by-nc-sa
+---
+
+```{r knitr-options, echo = F}
+opts_knit$set(progress = TRUE, verbose = TRUE)
+opts_chunk$set(cache=FALSE, echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, dev="png",out.width="850px",fig.width=11, fig.height=5, dpi=150, fig.align="center")
+options(width=80)
+```
+
+```{r generate-database, eval=FALSE}
+library(filehash)
+library(pepStat)
+library(Pviz)
+library(HIV.db)
+library(PEP.db)
+data(pep_hxb2)
+filehashOption(defaultType = "RDS")
+setwd("~/Dropbox/Work/PeptideArray/Data/HVTN204/")
+## Initialize database
+db <- dbInit("./DataDB-new-quad2/")
+
+## Create a petptide set
+db$pSet <- makePeptideSet(path="./gprFiles/", mapping.file="./mapping.csv", log=TRUE, norm.empty=FALSE, rm.control.list=c("empty"), check.row.order=TRUE)
+## Summarize peptide replicates by median
+db$psSet <- summarizePeptides(db$pSet, summary="median", position=pep_hxb2)
+## Normalize data
+db$pnSet <- NormalizeArray(db$psSet, robust=TRUE, standard=FALSE, method="ZpepQuad")
+## Smooth data using a running mean with widow 9AAs
+db$pnmSet <- slidingMean(db$pnSet, width=9)
+## Compute frequency of responders
+db$freq <- makeCalls(db$pnmSet, cutoff=1.1, group=NULL, method="absolute")
+# Compute major hotspots (above 20% responders)
+db$hotspots <- .reduce2hotspots(db$pnmSet, db$freq, 20)
+## Compute frequency of responders broken down by ad5 status
+db$freq.group <- makeCalls(db$pnmSet, cutoff=1.1, group="ad5", method="absolute")
+
+## Do the same as above but clade-specific
+clade.ordered<-pepStat:::clade(db$pnSet)[,c("M","A","B","C","D","CRF01","CRF02")]
+db$pnSet.clade <- split(db$pnSet, clade.ordered)
+db$pnmSet.clade <- lapply(db$pnSet.clade, slidingMean, width=9)
+db$freq.clade <- lapply(db$pnmSet.clade, makeCalls, cutoff=1.1, method="absolute", group=NULL)
+db$freq.group.clade <- lapply(db$pnmSet.clade, makeCalls, cutoff=1.1, method="absolute", group="ad5")
+```
+
+```{r set-up-database}
+library(filehash)
+data(pep_hxb2)
+filehashOption(defaultType = "RDS")
+
+### These are pre-computed and stored in a filehash database
+filehashOption(defaultType = "RDS")
+
+RV144<-dbInit("~/Dropbox/Work/PeptideArray/Data/rv144cc/DataDB-new-quad2/")
+Vax003<-dbInit("~/Dropbox/Work/PeptideArray/Data/Vax003/DataDB-new-quad2/")
+Vax004<-dbInit("~/Dropbox/Work/PeptideArray/Data/Vax004/DataDB-new-quad2/")
+NSDP<-dbInit("~/Dropbox/Work/PeptideArray/Data/NSDP/DataDB-new-quad2/")
+HVTN204<-dbInit("~/Dropbox/Work/PeptideArray/Data/HVTN204/DataDB-new-quad2/")
+```
+
+```{r load-up-packages}
+library(pepStat)
+library(Pviz)
+library(HIV.db)
+library(PEP.db)
+library(RColorBrewer)
+```
+
+```{r set-up-annotations}
+## Color options
+colorAnno <- brewer.pal(6, "Greys")
+colorTrack <- brewer.pal(7, "Dark2")
+
+genome<-"hxb2"
+## Load annotations
+anno_db <- loadFeatures(genome=genome)
+
+# Create protein tracks
+proteins <- getFeature(anno_db, category="protein")
+pro_anno <- AnnotationTrack(start=start(proteins), end=end(proteins), id=proteins$name, genome=genome,name="", chromosome="chr", fill=colorAnno[3:4], size=2, fontcolor="black", fontsize=14)
+displayPars(pro_anno) <- list(background.panel = colorAnno[1], alpha=1, showFeatureId=TRUE, stacking="dense", rotation=0, background.title="white", fontcolor="black")
+
+# Create track with landmarks
+landmarks <- getFeature(anno_db, name=c("V1","V2","V3","V4","V5","ID","MPER","TM"))
+landmarks_anno <- AnnotationTrack(start=c(start(landmarks),535,628), end=c(end(landmarks),581,659), id=c(landmarks$name,"HR-1","HR-2"), name="",chromosome="chr", fill=colorAnno[2], fontsize=14, size=2)
+displayPars(landmarks_anno) <- list(background.panel = colorAnno[1], alpha=1, showFeatureId=TRUE, stacking="dense", rotation=0, background.title="white", fontcolor="black")
+```
+
+## Array design overview and goals
+
+* Identify regions of the HIV viral envelope that elicit antibodies during natural infection or after vaccination
+* Array of overlapping gp160 peptides:
+    * Peptides mosaic designed by Bette Korber at LANL
+    * 1423 peptides (15 mers) across 7 sub-types
+    * Serum + secondary antibody = Reactive peptides
+
+* Data analyzed as described in Imholte *et al.* (2013, submitted to *JIM*).
+
+---
+
+## Aggregate response rate vs. HxB2
+
+```{r hvtn-aggregate}
+HXB2_axis <- ProteinAxisTrack(fontsize=16,littleTicks=TRUE,addNC=TRUE, col="black",fontcolor="black",lwd=4)
+
+ord<-order(pepStat:::position(RV144$pnSet))
+pos<-pepStat:::position(RV144$pnSet)[ord]
+
+HVTN.freq.track <- DataTrack(data = HVTN204$freq[ord], start=pos, width=0, name = "Frequency of responders", chromosome="chr",type=c("g","l"),v=-10,size=20)
+displayPars(HVTN.freq.track)<-list(col=colorTrack[5],lwd=4)
+
+# Use a rotation of 45 degrees to visualize the gp41 annotations
+displayPars(landmarks_anno)<-list(rotation=45)
+plotTracks(c(pro_anno, landmarks_anno, HVTN.freq.track, HXB2_axis),legend=TRUE,col.grid="grey90",cex.legend=1,fontsize.title=16,cex.axis=1.2,fontsize.legend=16, ylim=c(0,100),col.title="black",col.axis="black")
+```
+
+<footer class="source">The aggregate response represents an average of all sub-types.</footer>  
+Basically, we can only see <span class="red">two clear reactive regions in C1 and V3.</span>
+
+---
+
+## Subtype specific response rates
+
+```{r hvtn-subtype}
+displayPars(landmarks_anno)<-list(size=3)
+
+data.list<-lapply(1:7,function(i,x,y,dp,size,color,names,...){ord<-order(pepStat:::position(y[[i]]));pos<-pepStat:::position(y[[i]])[ord];DataTrack(data = x[[i]][ord], start=pos, width=0, name =names[i], chromosome="chr",type=c("g","l"),v=-10,col=color[i],lwd=4)},x=HVTN204$freq.clade,y=HVTN204$pnSet.clade, size=sizeTrack, color = colorTrack,ylim=c(0,100),names=c("M","A","B","C","D","CRF01","CRF02"))
+
+plotTracks(c(landmarks_anno,data.list,HXB2_axis),legend=TRUE,col.grid="grey90",cex.legend=1,fontsize.title=14,cex.axis=1.2,fontsize.legend=16,ylim=c(0,100),col.title="black",col.axis="black")
+# Reset the angle to 0
+```
+As expected &mdash; HVTN204 inserts are A, B, and C env &mdash; A, B and C show the largest response. <span class="red">There is virtually no CRF01 response.</span>
+
+---
+
+## Effect of Ad5 status on response rates
+
+```{r aggregate-response-by-ad5}
+HXB2_axis <- ProteinAxisTrack(fontsize=16,littleTicks=TRUE,addNC=TRUE, col="black",fontcolor="black",lwd=4)
+
+ord<-order(pepStat:::position(RV144$pnSet))
+pos<-pepStat:::position(RV144$pnSet)[ord]
+
+HVTN.freq.track <- DataTrack(data = t(HVTN204$freq.group[ord,]), start=pos, width=0, name = "Frequency of responders", chromosome="chr",type=c("g","l"),v=-10, groups=c("neg","pos"))
+displayPars(HVTN.freq.track)<-list(col=colorTrack[1:2],lwd=4,size=20)
+
+plotTracks(c(landmarks_anno,HVTN.freq.track, HXB2_axis),legend=TRUE,col.grid="grey90",cex.legend=1,fontsize.title=14,cex.axis=1.2,fontsize.legend=16, ylim=c(0,100),col.title="black",col.axis="black")
+```
+Prior Ad5 infection does not appear to induce a larger response. 
+<span class="red">The profiles for Ad5+ and Ad5- individuals look similar.</span>
+
+---
+
+## How does HVTN204 compare?
+
+```{r comparison-to-other-vax}
+displayPars(landmarks_anno)<-list(size=2)
+## Reorder position for plotting
+ord<-order(pepStat:::position(RV144$pnSet))
+pos<-pepStat:::position(RV144$pnSet)[ord]
+RV144.freq.track <- DataTrack(data = RV144$freq[ord], start=pos, width=0, name = "RV144", chromosome="chr",type=c("g","l"))
+displayPars(RV144.freq.track)<-list(col=colorTrack[1],lwd=4,v=-10)
+Vax003.freq.track <- DataTrack(data = Vax003$freq[ord], start=pos, width=0, name = "Vax003", chromosome="chr",type=c("g","l"))
+displayPars(Vax003.freq.track)<-list(col=colorTrack[2],lwd=4,v=-10)
+Vax004.freq.track <- DataTrack(data = Vax004$freq[ord], start=pos, width=0, name = "Vax004", chromosome="chr",type=c("g","l"))
+displayPars(Vax004.freq.track)<-list(col=colorTrack[3],lwd=4,v=-10)
+NSDP.freq.track <- DataTrack(data = NSDP$freq[ord], start=pos, width=0, name = "HIV-1+", chromosome="chr",type=c("g","l"),v=-10)
+displayPars(NSDP.freq.track)<-list(col=colorTrack[4],lwd=4)
+HVTN.freq.track <- DataTrack(data = HVTN204$freq[ord], start=pos, width=0, name = "HVTN204", chromosome="chr",type=c("g","l"),v=-10)
+displayPars(HVTN.freq.track)<-list(col=colorTrack[5],lwd=4)
+
+
+plotTracks(c(landmarks_anno,RV144.freq.track,Vax003.freq.track,Vax004.freq.track,NSDP.freq.track, HVTN.freq.track, HXB2_axis),from=1,to=525,legend=TRUE,col.grid="grey90",cex.legend=1,fontsize.title=14,cex.axis=1.2,fontsize.legend=16, ylim=c(0,100),col.title="black",col.axis="black")
+```
+C1 and V3 are comparable to RV144 and Vax003/004 but <span class = 'red'>no V2 and C5 responses.</span>
+
+--- .thank-you-slide .segue
+<aside class="gdbar right"><img src="assets/img/Logo.png"></aside>
+
+## Acknowledgments
+
+* David Montefiori (Duke)
+* Robert Bailer and Ellen Turk (NVITAL)
+* Bette Korber (LANL)
+* Xiaoying Shen and Georgia D. Tomaras (Duke)
+* MHRP, HVTN and CAVD.
+

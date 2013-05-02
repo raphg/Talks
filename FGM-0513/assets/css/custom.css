@@ -1,0 +1,269 @@
+/* line 761, ../scss/default.scss */
+.source {
+  font-size: 18px;
+  color: #a9a9a9;
+  position: absolute;
+  bottom: 70px;
+  left: 60px;
+}
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: bold;
+}
+
+.license {
+  font-size: 14px;
+  color: #a9a9a9;
+  position: absolute;
+  bottom: 30px;
+  left: 60px;
+}
+
+/* line 316, ../scss/default.scss */
+h2 {
+  font-size: 45px;
+  line-height: 45px;
+  letter-spacing: -2px;
+  color: #515151;
+}
+
+/* line 323, ../scss/default.scss */
+h3 {
+  font-size: 35px;
+  letter-spacing: -1px;
+  line-height: 2;
+  font-weight: inherit;
+  color: #797979;
+}
+
+
+/* Styles for Title Slide */
+.title-slide hgroup > h1{
+  font-family: 'Open Sans', Arial, sans-serif;
+}
+
+.title-slide hgroup > h2{
+  font-family: 'Open Sans', Arial, sans-serif;
+}
+
+/* Fonts and Spacing */
+article p, article li, article li.build{
+  font-family: 'Open Sans', Arial, sans-serif;
+  text-align: justify;
+  font-size: 30px;
+  line-height: 1.3em;
+}
+
+slide:not(.segue) h2{
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 52px;
+  font-style: normal;
+  font-weight: bold;
+  text-transform: normal;
+  letter-spacing: -2px;
+  line-height: 1.2em;
+  color: #515151;
+}
+
+/* Reduce Space between Title and Body */
+slides > slide > hgroup + article {
+  margin-top: 15px;
+}
+
+/* line 862, ../scss/default.scss */
+.thank-you-slide {
+  background: #4387fd !important;
+  color: white;
+}
+
+/* line 866, ../scss/default.scss */
+.thank-you-slide h2 {
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 52px;
+  font-style: normal;
+  font-weight: bold;
+  text-transform: normal;
+  letter-spacing: -2px;
+  line-height: 1.2em;
+  color: white;
+}
+
+/* line 871, ../scss/default.scss */
+.thank-you-slide article > p {
+  margin-top: 2em;
+  font-size: 20pt;
+}
+/* line 876, ../scss/default.scss */
+.thank-you-slide > p {
+  position: absolute;
+  bottom: 80px;
+  font-size: 24pt;
+  line-height: 1.3;
+}
+
+
+/* Remove Border, Margins and Padding from iframe */
+iframe {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Knitr Images */
+.rimage.left {
+  text-align: left;
+}
+.rimage.right {
+  text-align: right;
+}
+.rimage.center {
+  text-align: center;
+}
+
+/* Quotes and Shout (for io2012, custom) */
+article q {
+  font-family: 'Open Sans', Arial, sans-serif;
+}
+
+q {
+  display: block;
+  font-size: 44px;
+  line-height: 56px;
+  margin-left: 50px;
+  margin-top: 100px;
+  margin-right: 150px;
+}
+
+q::before {
+  content: '“';
+  position: absolute;
+  display: inline-block;
+  margin-left: -2.1em;
+  width: 2em;
+  text-align: right;
+  font-size: 90px;
+  color: silver;
+}
+
+q::after {
+  content: '”';
+  position: absolute;
+  margin-left: .1em;
+  font-size: 90px;
+  color: silver;
+}
+
+div.author {
+  text-align: right;
+  font-size: 40px;
+  margin-top: 20px;
+  margin-right: 150px;
+}
+
+div.author::before {
+  content: '—';
+}
+
+q.shout:before {
+  content: '';
+  position: absolute;
+  margin-left: -0.5em;
+}
+
+q.shout:after {
+  content: '';
+  position: absolute;
+  margin-left: 0.1em;
+}
+
+/* Tables */
+table caption{
+  margin-top: 20pt;
+  font-weight: normal;
+  font-family: 'Open Sans', Arial, sans-serif;
+}
+
+table th {
+  text-transform: capitalize;
+}
+
+/* Tables */
+table {
+  border: none;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 24px;
+  line-height: 32px;
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-weight: bolder;
+  color: rgb(102, 102, 102);
+}
+table thead {
+  border-top: 1px solid #BFBEAD;
+  border-bottom: 1px solid #BFBEAD;
+}
+table th, table td, table caption {
+  margin: 0;
+  padding: 2pt 6pt;
+  text-align: left;
+  vertical-align: top;
+}
+table th {
+  background: #CFCEBD;
+  color: #575400;
+  text-transform: uppercase;
+}
+table td {
+  border-bottom: 1px solid #CFCEBD;
+}
+table tr:nth-child(2n+1) {
+/*  background: #E8F2FF; */
+  background: #EFEEDD;
+}
+
+/* Styling for Ordered Lists (only for io2012) */
+ol {
+  margin-left: 2em;
+  margin-bottom: 1em;
+  position: relative;
+}
+
+ol li {
+  margin-bottom: 0.5em;
+}
+
+ol li ol {
+  margin-left: 2em;
+  margin-bottom: 0;
+}
+
+ol ul {
+  margin-top: .5em;
+}
+
+ol {
+  list-style-type: decimal;
+}
+
+/* line 171, ../scss/default.scss */
+  slides > slide:not(.nobackground):before {
+    font-size: 12pt;
+    content: "#HVTNFGM2013";
+    position: absolute;
+    bottom: 20px;
+    left: 60px;
+    background: url(../img/Logo.png) no-repeat 0 50%;
+    -webkit-background-size: 30px 30px;
+    -moz-background-size: 30px 30px;
+    -o-background-size: 30px 30px;
+    background-size: 30px 30px;
+    padding-left: 40px;
+    height: 30px;
+    line-height: 1.9;
+  }
+  
+  
