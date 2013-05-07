@@ -72,10 +72,11 @@ Prior Ad5 infection does not appear to induce a larger response.
 
 C1 and V3 are comparable to RV144 and Vax003/004 but <span class = 'red'>no V2 and C5 responses.</span>
 
---- .thank-you-slide .segue
-<aside class="gdbar right"><img src="assets/img/Logo.png"></aside>
+--- .thank-you-slide
 
 ## Acknowledgments
+
+<aside class="gdbar right"><img src="assets/img/Logo.png"></aside>
 
 * David Montefiori (Duke)
 * Robert Bailer and Ellen Turk (NVITAL)
