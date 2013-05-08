@@ -37,3 +37,23 @@ Icon?
 Thumbs.db
 *~
 .cache*
+=======
+# osx noise
+.DS_Store
+profile
+
+# xcode noise
+build/*
+*.mode1
+*.mode1v3
+*.mode2v3
+*.perspective
+*.perspectivev3
+*.pbxuser
+*.xcworkspace
+xcuserdata
+
+# svn & cvs
+.svn
+CVS
+FGM-0513/.cache/*
