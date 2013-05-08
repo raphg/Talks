@@ -1,0 +1,56 @@
+/* line 5, ../scss/io2013.scss */
+* {
+  line-height: 1.3;
+}
+
+/* line 9, ../scss/io2013.scss */
+h2 {
+  font-weight: bold;
+}
+
+/* line 12, ../scss/io2013.scss */
+h2, h3 {
+  color: #e6e6e6;
+}
+
+/* line 16, ../scss/io2013.scss */
+q, blockquote {
+  font-weight: bold;
+}
+
+/* line 20, ../scss/io2013.scss */
+slides > slide {
+  color: darkgrey;
+}
+/* line 24, ../scss/io2013.scss */
+slides > slide.title-slide:after {
+  content: '';
+  background: url(../../images/Logo_Reversed_FHCRC.png) no-repeat 100% 50%;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
+  position: absolute;
+  bottom: 80px;
+  right: 40px;
+  width: 100%;
+  height: 90px;
+}
+/* line 36, ../scss/io2013.scss */
+slides > slide.title-slide hgroup h1 {
+  font-weight: bold;
+  line-height: 1.1;
+  color: #e6e6e6;
+}
+/* line 41, ../scss/io2013.scss */
+slides > slide.title-slide hgroup h2, slides > slide.title-slide hgroup p {
+  color: darkgrey;
+}
+/* line 44, ../scss/io2013.scss */
+slides > slide.title-slide hgroup h2 {
+  margin-top: 0.25em;
+}
+/* line 47, ../scss/io2013.scss */
+slides > slide.title-slide hgroup p {
+  margin-top: 3em;
+}
