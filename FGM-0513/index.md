@@ -2,7 +2,7 @@
 title       : HVTN204 Peptide Microarray Analysis
 subtitle    : HVTN FGM, May 2013
 author      : Raphael Gottardo
-job         : Associate Member, Fred Hutchinson Cancer Research Center
+job         : Associate Member, Vaccine and Infectious Diseases Division
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
 hitheme     : tomorrow      # 
@@ -44,7 +44,7 @@ license: by-nc-sa
 <img src="figure/hvtn-aggregate.png" title="plot of chunk hvtn-aggregate" alt="plot of chunk hvtn-aggregate" width="850px" />
 
 
-<footer class="source">The aggregate response represents an average of all sub-types.</footer>  
+<small>The aggregate response represents an average of all sub-types.</small>  
 Basically, we can only see <span class="red">two clear reactive regions in C1 and V3.</span>
 
 ---
