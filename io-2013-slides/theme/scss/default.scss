@@ -312,7 +312,7 @@ ul {
   }
 
   > li:before {
-    content: '\00B7';
+    content: '\2022';
     margin-left: -1em;
     position: absolute;
     font-weight: 600;
@@ -1063,4 +1063,14 @@ aside.gdbar {
   pre, code {
     font-family: monospace !important;
   }
+}
+
+/* Added some style for fonts */
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: bold;
 }
