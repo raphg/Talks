@@ -57,3 +57,10 @@ xcuserdata
 .svn
 CVS
 FGM-0513/.cache/*
+.Rproj.user
+io-2013-slides/.sass-cache/*
+VIDD-0513/.Rhistory
+cache/
+VIDD-0513/data/tomaras_gp120_case_control.csv
+data/
+VIDD-0513/VIDD-0513.Rproj

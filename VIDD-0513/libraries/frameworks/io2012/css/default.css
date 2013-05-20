@@ -292,6 +292,7 @@ slides > slide.far-next {
 slides > slide.dark {
   background: #515151 !important;
 }
+
 /* line 183, ../scss/default.scss */
 slides > slide:not(.nobackground):after {
   font-size: 12pt;

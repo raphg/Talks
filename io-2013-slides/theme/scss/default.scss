@@ -630,7 +630,7 @@ article.smaller {
   top: 0;
   left: 0;
   padding: 1em;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.5);
   opacity: 0;
   pointer-events: none;
   @include flexbox;
@@ -641,9 +641,10 @@ article.smaller {
   @include transform(translateY($slide-height / 2));@include transition(all 0.4s ease-in-out);
 
   > section {
-    background: $gray-4;
+  	color: $gray-4;
+    background: $gray-1;
     @include border-radius($slide-border-radius);
-    @include box-shadow(0 0 10px $gray-3);
+    @include box-shadow(0 0 10px $gray-2);
     width: 60%;
     padding: 2em;
   }
@@ -695,6 +696,7 @@ article.smaller {
     }
 
     .note {
+      color: $gray-4;
       width: 109%;
       height: $slide-height / 2 - 90;
       background: $gray-1;
@@ -706,6 +708,7 @@ article.smaller {
       @include transition(opacity 400ms ease-in-out);
 
       > section {
+        color: $gray-1;      	
         background: black;
         @include border-radius($slide-border-radius);
         height: 100%;
