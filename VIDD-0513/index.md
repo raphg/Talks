@@ -84,9 +84,10 @@ logo: Logo.png
 
 <img src="figure/rv144-aggregate.png" title="plot of chunk rv144-aggregate" alt="plot of chunk rv144-aggregate" width="900px" />
 
+4 hotspots noted as <span class="red">C1, V2, V3, and C5.</span>
+V2 hotspots described in <a href="http://www.ncbi.nlm.nih.gov/pubmed/23035746">(Karasavvas *et al.*, 2012)</a>
 
 <span class="source"><sup>*</sup>The aggregate response represents an average of all sub-types.</span> 
-We can see 4 hotspots noted as <span class="red">C1, V2, V3, and C5.</span>
 
 ---
 
@@ -100,14 +101,14 @@ We can see 4 hotspots noted as <span class="red">C1, V2, V3, and C5.</span>
 
 ---
 
-## Peptide variable definition
+## Peptide variables definition
 
 * Defined four reactive regions (hotspots): <span class="red">C1, V2, V3, and C5</span>
 * For each region, find the position at the maximum response (*peak summit*)
     * <span class="white">**Aggregate response**</span>: average of all subtypes centered at the maximum position
     * <span class="white">**Subtype-specific responses**</span>: corresponding individual peptide responses
 * Total of <span class="white">24 variables</span>: 4 aggregate and 20 subtype variables
-* Correlate analysis for these 24 variables using two phase design logistic regression (Haynes *et al.*, 2012)
+* Correlate analysis for these 24 variables using two phase design logistic regression <a href="http://www.ncbi.nlm.nih.gov/pubmed/22475592">(Haynes *et al.*, 2012)</a>
 
 ---
 
@@ -133,7 +134,7 @@ We can see 4 hotspots noted as <span class="red">C1, V2, V3, and C5.</span>
 <img src="figure/OR-ggplot-aggregate.png" title="plot of chunk OR-ggplot-aggregate" alt="plot of chunk OR-ggplot-aggregate" width="900px" />
 
 
-Most significant (inverse) correlation with our V2 aggregate variable. 
+Most significant (inverse) correlation with our V2 aggregate variable <a href="http://www.plosone.org/article/info%3Adoi%2F10.1371%2Fjournal.pone.0053629">(Zolla-Pazner *et al.*, 2013)</a>
 
 ---
 
@@ -174,7 +175,7 @@ The C5 subtype A peptide is significantly correlated with infection.
 
 
 * Weak correlation between the two V2 variables
-* Could the two be measuring different antibodies? Likely, yes (Liao *et al.*, 2013).
+* Could the two be measuring different antibodies? Likely, yes <a href="http://www.cell.com/immunity/abstract/S1074-7613(12)00552-3">(Liao *et al.*, 2013)</a>.
 
 --- &twocol w1:60% w2:38%
 
@@ -262,7 +263,7 @@ IgA level dichotomized as below (*Low*) or above (*High*) median(IgA)
 
 ## Summary
 
-* Our peptide microarray is a nice technology for profiling antibodies and mapping *linear* epitopes
+* The peptide microarray is a nice technology for profiling antibodies and mapping *linear* epitopes
 * Validated the <del>V1</del>V2 correlate
     * Support the K169 sieve result
     * Non-neutralizing antibodies might be more important that we thought
@@ -301,7 +302,7 @@ No <span class = 'red'>V2</span> in Vax004, HVTN204, HIV-1+<sup>*</sup><span cla
 
 
 <pre class="prettyprint", data-lang="URL">
-<span class="gray4">Want more? &#8594; </span> <a href="http://raphg.github.io/Talks/VIDD-0513/index.html">http://goo.gl/57NhP</a>
+<span class="gray4">Want to see it again? &#8594; </span> <a href="http://raphg.github.io/Talks/VIDD-0513/index.html">http://goo.gl/57NhP</a>
 </pre>
 
 <a href="https://github.com/raphg/Talks/tree/gh-pages/VIDD-0513"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub"></a>
