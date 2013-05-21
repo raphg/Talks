@@ -213,7 +213,7 @@ plotTracks(c(landmarks_anno,data.list,HXB2_axis),legend=TRUE,col.grid="grey90",c
 
 ---
 
-## Peptide variable definition
+## Peptide variables definition
 
 * Defined four reactive regions (hotspots): <span class="red">C1, V2, V3, and C5</span>
 * For each region, find the position at the maximum response (*peak summit*)
@@ -623,7 +623,7 @@ plotTracks(trackList=c(data.list2,rpref,seq.hxb2), from=327, to=344, ylim=c(0,3)
 
 ## Summary
 
-* Our peptide microarray is a nice technology for profiling antibodies and mapping *linear* epitopes
+* The peptide microarray is a nice technology for profiling antibodies and mapping *linear* epitopes
 * Validated the <del>V1</del>V2 correlate
     * Support the K169 sieve result
     * Non-neutralizing antibodies might be more important that we thought

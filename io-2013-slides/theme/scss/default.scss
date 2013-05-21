@@ -62,7 +62,7 @@ body {
 slides > slide {
   display: none;
   font-family: 'Open Sans', Arial, sans-serif;
-  font-size: 26px;
+  font-size: 30px;
   color: $gray-1;
   //@include background(linear-gradient(white, white 85%, $gray-1));
   //background-color: white;
@@ -285,7 +285,7 @@ h2 {
 }
 
 h3 {
-  font-size: 30px;
+  font-size: 35px;
   letter-spacing: -1px;
   line-height: 2;
   font-weight: inherit;
