@@ -130,7 +130,7 @@ displayPars(landmarks_anno) <- list(alpha=1, showFeatureId=TRUE, rotation=0, bac
 
 * Prime-boost combination: ALVAC and AIDSVAX
 * 31% efficacy
-* How the vaccine works?
+* How did the vaccine work?
 
 
 --- &twocol w1:65% w2:33%
@@ -301,7 +301,6 @@ res$type[-c(5:10)]<-"Peptide"
 # res<-tps.univariate.matrix(as.matrix(VPS2))
 # res<-as.data.frame(cbind(t(res),p.adjust(res[4,],method="BH")))
 # names(res)<-c("OR","CI.low","CI.up","pvalue","q-value")
-
 ```
 
 * <span class="white"> **Six primary variables** </span>: 5 antibody and 1 cellular responses
