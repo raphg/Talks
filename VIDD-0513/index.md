@@ -37,7 +37,7 @@ logo: Logo.png
 
 * Prime-boost combination: ALVAC and AIDSVAX
 * 31% efficacy
-* How did the vaccine might work?
+* How the vaccine works?
 
 
 --- &twocol w1:65% w2:33%
@@ -131,6 +131,11 @@ V2 hotspots described in <a href="http://www.ncbi.nlm.nih.gov/pubmed/23035746">(
 
 ## Odds-ratios for aggregate and primary variables
 
+
+```
+## Error: comparison (1) is possible only for atomic and list types
+```
+
 <img src="figure/OR-ggplot-aggregate.png" title="plot of chunk OR-ggplot-aggregate" alt="plot of chunk OR-ggplot-aggregate" width="900px" />
 
 
@@ -140,9 +145,14 @@ Most significant (inverse) correlation with our V2 aggregate variable <a href="h
 
 ## Odds-ratios for V2 variables
 
+
+```
+## Error: object 'variable' not found
+```
+
 <img src="figure/OR-ggplot-V2-subtype.png" title="plot of chunk OR-ggplot-V2-subtype" alt="plot of chunk OR-ggplot-V2-subtype" width="900px" />
 
-* The V2 subtype-CRF01_AE (V2.1) peptide has the smallest estimated OR (OR=0.63, p=0.0196). 
+* The V2 subtype-CRF01_AE (V2.1) peptide has the smallest estimated OR (OR=, p=). 
 * No decrease in risk with the V2 subtype-B peptide.
 
 ---
@@ -155,6 +165,11 @@ Most significant (inverse) correlation with our V2 aggregate variable <a href="h
 ---
 
 ## Odds-ratios for C5 variables
+
+
+```
+## Error: object 'variable' not found
+```
 
 <img src="figure/OR-ggplot-C5-subtype.png" title="plot of chunk OR-ggplot-C5-subtype" alt="plot of chunk OR-ggplot-C5-subtype" width="900px" />
 
