@@ -628,7 +628,7 @@ plotTracks(trackList=c(data.list2,rpref,seq.hxb2), from=327, to=344, ylim=c(0,3)
     * Non-neutralizing antibodies might be more important that we thought
 * Interesting (conditional) V3 correlate
     * Relation to sieve results?
-    * More work to be done
+    * More work to be done (Gottardo *et al.*, In Preparation)
 
 <aside class="note">
 <section>

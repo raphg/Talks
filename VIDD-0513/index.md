@@ -269,7 +269,7 @@ IgA level dichotomized as below (*Low*) or above (*High*) median(IgA)
     * Non-neutralizing antibodies might be more important that we thought
 * Interesting (conditional) V3 correlate
     * Relation to sieve results?
-    * More work to be done
+    * More work to be done (Gottardo *et al.*, In Preparation)
 
 <aside class="note">
 <section>
